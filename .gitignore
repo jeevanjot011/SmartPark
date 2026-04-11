@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+certs/*.pem
+certs/*.crt
+certs/*.key
+data/
+.env
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

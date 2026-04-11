@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartPark - Fog Computing Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f5f5f5; font-family: 'Segoe UI', sans-serif; }
+        .navbar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card { border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: none; margin-bottom: 20px; }
+        .metric-card { text-align: center; padding: 20px; }
+        .metric-value { font-size: 2.5em; font-weight: bold; }
+        .metric-label { color: #666; text-transform: uppercase; font-size: 0.85em; letter-spacing: 1px; }
+        .alert-critical { background: #ff6b6b; color: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; }
+        .alert-warning { background: #feca57; color: #333; padding: 15px; border-radius: 10px; margin-bottom: 10px; }
+        .score-excellent { color: #1dd1a1; }
+        .score-good { color: #54a0ff; }
+        .score-fair { color: #feca57; }
+        .score-poor { color: #ff6b6b; }
+        #recommendation-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-online { background: #1dd1a1; }
+        .status-offline { background: #ff6b6b; }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <nav class="navbar navbar-dark mb-4">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">🌳 SmartPark - Fog Computing Dashboard</span>
+            <span class="navbar-text text-white">NCI MSCCLOUD Project | <span id="connection-status"><span class="status-indicator status-offline"></span>Connecting...</span></span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Recommendation Banner -->
+        <div id="recommendation-box">
+            <h2 id="rec-title">Loading SmartPark Data...</h2>
+            <p id="rec-subtitle" class="mb-0">Waiting for fog node to send processed data...</p>
+            <div class="mt-3">
+                <span class="badge bg-light text-dark me-2">Real Weather API</span>
+                <span class="badge bg-light text-dark me-2">5 Sensors</span>
+                <span class="badge bg-light text-dark">Fog Processing</span>
+            </div>
+        </div>
+
+        <!-- Current Metrics -->
+        <div class="row mb-4">
+            <div class="col-md-2 col-sm-4 col-6">
+                <div class="card metric-card">
+                    <div class="metric-value" id="temp-val">--</div>
+                    <div class="metric-label">Temperature (°C)</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-6">
+                <div class="card metric-card">
+                    <div class="metric-value" id="humidity-val">--</div>
+                    <div class="metric-label">Humidity (%)</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-6">
+                <div class="card metric-card">
+                    <div class="metric-value" id="uv-val">--</div>
+                    <div class="metric-label">UV Index</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-6">
+                <div class="card metric-card">
+                    <div class="metric-value" id="soil-val">--</div>
+                    <div class="metric-label">Soil (%)</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-6">
+                <div class="card metric-card">
+                    <div class="metric-value" id="pm25-val">--</div>
+                    <div class="metric-label">PM2.5</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-6">
+                <div class="card metric-card">
+                    <div class="metric-value" id="score-val">--</div>
+                    <div class="metric-label">Park Score</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">🌡️ Temperature & Humidity Trend</h5>
+                        <canvas id="weatherChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">☀️ UV Index & Air Quality</h5>
+                        <canvas id="environmentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">📊 Park Suitability Score History</h5>
+                        <canvas id="scoreChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">🚨 Recent Alerts</h5>
+                        <div id="alerts-list">
+                            <p class="text-muted">No alerts detected</p>
+                        </div>
+                        <hr>
+                        <small class="text-muted">
+                            <strong>Fog Logic:</strong> Only sends alerts when score changes >10% or safety threshold breached.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-5 text-center text-muted">
+            <p>SmartPark System | Fog & Edge Computing | NCI 2026</p>
+            <small>84% cloud cost reduction via edge processing | Real-time weather API integration</small>
+        </footer>
+    </div>
+
+    <script>
+        let weatherChart, environmentChart, scoreChart;
+        let lastDataTimestamp = null;
+
+        // Initialize charts
+        function initCharts() {
+            const ctx1 = document.getElementById('weatherChart').getContext('2d');
+            weatherChart = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Temperature (°C)',
+                        data: [],
+                        borderColor: 'rgb(255, 99, 132)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'Humidity (%)',
+                        data: [],
+                        borderColor: 'rgb(54, 162, 235)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    scales: { y: { beginAtZero: false } },
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+
+            const ctx2 = document.getElementById('environmentChart').getContext('2d');
+            environmentChart = new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'UV Index',
+                        data: [],
+                        borderColor: 'rgb(255, 206, 86)',
+                        backgroundColor: 'rgba(255, 206, 86, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        yAxisID: 'y'
+                    }, {
+                        label: 'PM2.5 (μg/m³)',
+                        data: [],
+                        borderColor: 'rgb(75, 192, 192)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        yAxisID: 'y1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'UV Index' } },
+                        y1: { type: 'linear', display: true, position: 'right', title: { display: true, text: 'PM2.5' }, grid: { drawOnChartArea: false } }
+                    },
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+
+            const ctx3 = document.getElementById('scoreChart').getContext('2d');
+            scoreChart = new Chart(ctx3, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Park Score (0-100)',
+                        data: [],
+                        borderColor: 'rgb(118, 75, 162)',
+                        backgroundColor: 'rgba(118, 75, 162, 0.2)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { min: 0, max: 100, ticks: { stepSize: 20 } }
+                    },
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+        }
+
+        // Update current metrics
+        async function updateCurrent() {
+            try {
+                const response = await fetch('/api/current');
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    const data = result.data;
+                    const sensors = data.sensors || {};
+
+                    // Update connection status
+                    document.getElementById('connection-status').innerHTML = '<span class="status-indicator status-online"></span>Live';
+
+                    // Update metrics
+                    document.getElementById('temp-val').textContent = sensors.temperature_c?.toFixed(1) || '--';
+                    document.getElementById('humidity-val').textContent = sensors.humidity_percent?.toFixed(1) || '--';
+                    document.getElementById('uv-val').textContent = sensors.uv_index?.toFixed(1) || '--';
+                    document.getElementById('soil-val').textContent = sensors.soil_moisture_percent?.toFixed(1) || '--';
+                    document.getElementById('pm25-val').textContent = sensors.pm25_ug_m3?.toFixed(1) || '--';
+
+                    // Update score with color
+                    const score = data.parkScore || 0;
+                    const scoreEl = document.getElementById('score-val');
+                    scoreEl.textContent = score.toFixed(1);
+
+                    let scoreClass = 'score-poor';
+                    if (score >= 80) scoreClass = 'score-excellent';
+                    else if (score >= 60) scoreClass = 'score-good';
+                    else if (score >= 40) scoreClass = 'score-fair';
+
+                    scoreEl.className = 'metric-value ' + scoreClass;
+
+                    // Update recommendation banner
+                    document.getElementById('rec-title').textContent = data.recommendation || 'No recommendation available';
+                    const timestamp = data.timestamp ? new Date(data.timestamp).toLocaleString() : 'Unknown';
+                    document.getElementById('rec-subtitle').textContent = `Last fog processing: ${timestamp} | Score: ${score}/100`;
+
+                    lastDataTimestamp = data.timestamp;
+                } else {
+                    document.getElementById('connection-status').innerHTML = '<span class="status-indicator status-offline"></span>No Data';
+                    document.getElementById('rec-subtitle').textContent = 'Error: ' + result.message;
+                }
+            } catch (error) {
+                console.error('Error fetching current data:', error);
+                document.getElementById('connection-status').innerHTML = '<span class="status-indicator status-offline"></span>Error';
+            }
+        }
+
+        // Update charts with history
+        async function updateHistory() {
+            try {
+                const response = await fetch('/api/history');
+                const result = await response.json();
+
+                if (result.status === 'success' && result.data) {
+                    const data = result.data;
+
+                    if (data.timestamps && data.timestamps.length > 0) {
+                        const labels = data.timestamps.map(t => new Date(t).toLocaleTimeString());
+
+                        // Update weather chart
+                        weatherChart.data.labels = labels;
+                        weatherChart.data.datasets[0].data = data.temperature || [];
+                        weatherChart.data.datasets[1].data = data.humidity || [];
+                        weatherChart.update();
+
+                        // Update environment chart
+                        environmentChart.data.labels = labels;
+                        environmentChart.data.datasets[0].data = data.uv || [];
+                        environmentChart.data.datasets[1].data = data.pm25 || [];
+                        environmentChart.update();
+
+                        // Update score chart
+                        if (data.scores && data.scores.length > 0) {
+                            scoreChart.data.labels = labels.slice(-data.scores.length);
+                            scoreChart.data.datasets[0].data = data.scores;
+                            scoreChart.update();
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching history:', error);
+            }
+        }
+
+        // Update alerts - FIXED to handle proper structure
+        async function updateAlerts() {
+            try {
+                const response = await fetch('/api/alerts');
+                const result = await response.json();
+
+                const alertsList = document.getElementById('alerts-list');
+
+                if (result.alerts && result.alerts.length > 0) {
+                    let html = '';
+
+                    for (const alertItem of result.alerts) {
+                        // alertItem has: timestamp, alerts (array), score
+                        const alerts = alertItem.alerts || [];
+                        const time = alertItem.timestamp ? new Date(alertItem.timestamp).toLocaleTimeString() : 'Unknown';
+
+                        for (const alert of alerts) {
+                            // alert has: type, severity, message
+                            const alertType = alert.type || 'UNKNOWN';
+                            const severity = alert.severity || 'WARNING';
+                            const message = alert.message || alert.action || 'No details';
+
+                            const alertClass = severity === 'CRITICAL' || severity === 'HIGH' ? 'alert-critical' : 'alert-warning';
+
+                            html += `<div class="${alertClass}">
+                                <strong>${alertType}</strong> (${severity})<br>
+                                <small>${message}</small><br>
+                                <small class="opacity-75">${time}</small>
+                            </div>`;
+                        }
+                    }
+
+                    alertsList.innerHTML = html || '<p class="text-muted">No active alerts</p>';
+                } else {
+                    alertsList.innerHTML = '<p class="text-muted">No alerts detected. System operating normally.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching alerts:', error);
+                document.getElementById('alerts-list').innerHTML = '<p class="text-muted">Error loading alerts</p>';
+            }
+        }
+
+        // Initial load and periodic refresh
+        window.onload = function() {
+            initCharts();
+
+            // Immediate first load
+            updateCurrent();
+            updateHistory();
+            updateAlerts();
+
+            // Periodic refresh
+            setInterval(updateCurrent, 5000);    // Current data every 5s
+            setInterval(updateHistory, 30000);   // Charts every 30s
+            setInterval(updateAlerts, 10000);   // Alerts every 10s
+        };
+    </script>
+</body>
+</html>
