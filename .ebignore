@@ -1,4 +1,4 @@
-.git
+cd .git
 .gitignore
 README.md
 *.pem

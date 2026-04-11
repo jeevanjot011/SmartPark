@@ -1,0 +1,316 @@
+Retrieving logs...
+============= i-04f753969e32bcc52 ==============
+----------------------------------------
+/var/log/web.stdout.log
+----------------------------------------
+Apr 11 07:49:38 ip-172-31-44-134 web[5173]: [2026-04-11 07:49:38 +0000] [5173] [INFO] Worker exiting (pid: 5173)
+Apr 11 07:49:38 ip-172-31-44-134 web[5169]: [2026-04-11 07:49:38 +0000] [5169] [ERROR] Worker (pid:5173) exited with code 3
+Apr 11 07:49:38 ip-172-31-44-134 web[5169]: [2026-04-11 07:49:38 +0000] [5169] [ERROR] Shutting down: Master
+Apr 11 07:49:38 ip-172-31-44-134 web[5169]: [2026-04-11 07:49:38 +0000] [5169] [ERROR] Reason: Worker failed to boot.
+Apr 11 07:49:38 ip-172-31-44-134 web[5175]: [2026-04-11 07:49:38 +0000] [5175] [INFO] Starting gunicorn 21.2.0
+Apr 11 07:49:38 ip-172-31-44-134 web[5175]: [2026-04-11 07:49:38 +0000] [5175] [INFO] Listening at: http://0.0.0.0:8000 (5175)
+Apr 11 07:49:38 ip-172-31-44-134 web[5175]: [2026-04-11 07:49:38 +0000] [5175] [INFO] Using worker: gthread
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]: [2026-04-11 07:49:38 +0000] [5179] [INFO] Booting worker with pid: 5179
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]: [2026-04-11 07:49:38 +0000] [5179] [ERROR] Exception in worker process
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]: Traceback (most recent call last):
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:    worker.init_process()
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/workers/gthread.py", line 95, in init_process
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:    super().init_process()
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:    self.load_wsgi()
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:    self.wsgi = self.app.wsgi()
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:    self.callable = self.load()
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:    return self.load_wsgiapp()
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:    return util.import_app(self.app_uri)
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/util.py", line 371, in import_app
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:    mod = importlib.import_module(module)
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:  File "/usr/lib64/python3.9/importlib/__init__.py", line 127, in import_module
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:    return _bootstrap._gcd_import(name[level:], package, level)
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]:  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]: ModuleNotFoundError: No module named 'application'
+Apr 11 07:49:38 ip-172-31-44-134 web[5179]: [2026-04-11 07:49:38 +0000] [5179] [INFO] Worker exiting (pid: 5179)
+Apr 11 07:49:38 ip-172-31-44-134 web[5175]: [2026-04-11 07:49:38 +0000] [5175] [ERROR] Worker (pid:5179) exited with code 3
+Apr 11 07:49:38 ip-172-31-44-134 web[5175]: [2026-04-11 07:49:38 +0000] [5175] [ERROR] Shutting down: Master
+Apr 11 07:49:38 ip-172-31-44-134 web[5175]: [2026-04-11 07:49:38 +0000] [5175] [ERROR] Reason: Worker failed to boot.
+Apr 11 07:49:39 ip-172-31-44-134 web[5181]: [2026-04-11 07:49:39 +0000] [5181] [INFO] Starting gunicorn 21.2.0
+Apr 11 07:49:39 ip-172-31-44-134 web[5181]: [2026-04-11 07:49:39 +0000] [5181] [INFO] Listening at: http://0.0.0.0:8000 (5181)
+Apr 11 07:49:39 ip-172-31-44-134 web[5181]: [2026-04-11 07:49:39 +0000] [5181] [INFO] Using worker: gthread
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]: [2026-04-11 07:49:39 +0000] [5185] [INFO] Booting worker with pid: 5185
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]: [2026-04-11 07:49:39 +0000] [5185] [ERROR] Exception in worker process
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]: Traceback (most recent call last):
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:    worker.init_process()
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/workers/gthread.py", line 95, in init_process
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:    super().init_process()
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:    self.load_wsgi()
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:    self.wsgi = self.app.wsgi()
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:    self.callable = self.load()
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:    return self.load_wsgiapp()
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:    return util.import_app(self.app_uri)
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/util.py", line 371, in import_app
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:    mod = importlib.import_module(module)
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:  File "/usr/lib64/python3.9/importlib/__init__.py", line 127, in import_module
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:    return _bootstrap._gcd_import(name[level:], package, level)
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]:  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]: ModuleNotFoundError: No module named 'application'
+Apr 11 07:49:39 ip-172-31-44-134 web[5185]: [2026-04-11 07:49:39 +0000] [5185] [INFO] Worker exiting (pid: 5185)
+Apr 11 07:49:39 ip-172-31-44-134 web[5181]: [2026-04-11 07:49:39 +0000] [5181] [ERROR] Worker (pid:5185) exited with code 3
+Apr 11 07:49:39 ip-172-31-44-134 web[5181]: [2026-04-11 07:49:39 +0000] [5181] [ERROR] Shutting down: Master
+Apr 11 07:49:39 ip-172-31-44-134 web[5181]: [2026-04-11 07:49:39 +0000] [5181] [ERROR] Reason: Worker failed to boot.
+Apr 11 07:49:39 ip-172-31-44-134 web[5187]: [2026-04-11 07:49:39 +0000] [5187] [INFO] Starting gunicorn 21.2.0
+Apr 11 07:49:39 ip-172-31-44-134 web[5187]: [2026-04-11 07:49:39 +0000] [5187] [INFO] Listening at: http://0.0.0.0:8000 (5187)
+Apr 11 07:49:39 ip-172-31-44-134 web[5187]: [2026-04-11 07:49:39 +0000] [5187] [INFO] Using worker: gthread
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]: [2026-04-11 07:49:39 +0000] [5191] [INFO] Booting worker with pid: 5191
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]: [2026-04-11 07:49:39 +0000] [5191] [ERROR] Exception in worker process
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]: Traceback (most recent call last):
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:    worker.init_process()
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/workers/gthread.py", line 95, in init_process
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:    super().init_process()
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:    self.load_wsgi()
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:    self.wsgi = self.app.wsgi()
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:    self.callable = self.load()
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:    return self.load_wsgiapp()
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:    return util.import_app(self.app_uri)
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.9/site-packages/gunicorn/util.py", line 371, in import_app
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:    mod = importlib.import_module(module)
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:  File "/usr/lib64/python3.9/importlib/__init__.py", line 127, in import_module
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:    return _bootstrap._gcd_import(name[level:], package, level)
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]:  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]: ModuleNotFoundError: No module named 'application'
+Apr 11 07:49:39 ip-172-31-44-134 web[5191]: [2026-04-11 07:49:39 +0000] [5191] [INFO] Worker exiting (pid: 5191)
+Apr 11 07:49:39 ip-172-31-44-134 web[5187]: [2026-04-11 07:49:39 +0000] [5187] [ERROR] Worker (pid:5191) exited with code 3
+Apr 11 07:49:39 ip-172-31-44-134 web[5187]: [2026-04-11 07:49:39 +0000] [5187] [ERROR] Shutting down: Master
+Apr 11 07:49:39 ip-172-31-44-134 web[5187]: [2026-04-11 07:49:39 +0000] [5187] [ERROR] Reason: Worker failed to boot.
+
+
+----------------------------------------
+/var/log/eb-engine.log
+----------------------------------------
+2026/04/11 07:49:31.603350 [WARN] stopProcess Warning: process xray is not registered 
+2026/04/11 07:49:31.603385 [INFO] Running command: systemctl stop xray.service
+2026/04/11 07:49:31.617856 [INFO] Executing instruction: stop proxy
+2026/04/11 07:49:31.617891 [INFO] Running command: systemctl show -p PartOf httpd.service
+2026/04/11 07:49:31.632169 [WARN] deregisterProcess Warning: process httpd is not registered, skipping...
+
+2026/04/11 07:49:31.632204 [INFO] Running command: systemctl show -p PartOf nginx.service
+2026/04/11 07:49:31.643907 [INFO] Running command: systemctl is-active nginx.service
+2026/04/11 07:49:31.652429 [INFO] Running command: systemctl show -p PartOf nginx.service
+2026/04/11 07:49:31.661901 [INFO] Running command: systemctl stop nginx.service
+2026/04/11 07:49:31.876265 [INFO] Running command: systemctl disable nginx.service
+2026/04/11 07:49:32.160320 [INFO] Running command: systemctl daemon-reload
+2026/04/11 07:49:32.441935 [INFO] Running command: systemctl reset-failed
+2026/04/11 07:49:32.450473 [INFO] Executing instruction: FlipApplication
+2026/04/11 07:49:32.450497 [INFO] Fetching environment variables...
+2026/04/11 07:49:32.450729 [INFO] Purge old process...
+2026/04/11 07:49:32.450750 [INFO] Running command: systemctl stop eb-app.target
+2026/04/11 07:49:32.460307 [INFO] Running command: systemctl show -p ConsistsOf eb-app.target | cut -d= -f2
+2026/04/11 07:49:32.471238 [INFO] web.service
+
+2026/04/11 07:49:32.471260 [INFO] deregistering process: web
+2026/04/11 07:49:32.471275 [INFO] Running command: systemctl show -p PartOf web.service
+2026/04/11 07:49:32.481658 [INFO] Running command: systemctl is-active web.service
+2026/04/11 07:49:32.489226 [INFO] Running command: systemctl disable web.service
+2026/04/11 07:49:32.732940 [INFO] Removed "/etc/systemd/system/multi-user.target.wants/web.service".
+
+2026/04/11 07:49:32.733021 [INFO] Running command: systemctl daemon-reload
+2026/04/11 07:49:32.997335 [INFO] Running command: systemctl reset-failed
+2026/04/11 07:49:33.006081 [INFO] Running command: systemctl is-active web.service
+2026/04/11 07:49:33.013634 [INFO] Process web has not been fully terminated
+2026/04/11 07:49:33.013661 [INFO] Some processes have not been fully terminated, sleeping 1 seconds now
+2026/04/11 07:49:34.014214 [INFO] Running command: systemctl is-active web.service
+2026/04/11 07:49:34.022766 [INFO] Process web has been fully terminated
+2026/04/11 07:49:34.022791 [INFO] All processes have been fully terminated
+2026/04/11 07:49:34.022796 [INFO] Removing /var/app/current/ if it exists
+2026/04/11 07:49:34.024790 [INFO] Renaming /var/app/staging/ to /var/app/current/
+2026/04/11 07:49:34.024832 [INFO] Register application processes...
+2026/04/11 07:49:34.024836 [INFO] Registering the proc: web
+
+2026/04/11 07:49:34.024845 [INFO] Running command: systemctl show -p PartOf web.service
+2026/04/11 07:49:34.037887 [INFO] Running command: systemctl daemon-reload
+2026/04/11 07:49:34.307709 [INFO] Running command: systemctl reset-failed
+2026/04/11 07:49:34.315930 [INFO] Running command: systemctl is-enabled eb-app.target
+2026/04/11 07:49:34.323990 [INFO] Running command: systemctl enable eb-app.target
+2026/04/11 07:49:34.597064 [INFO] Running command: systemctl start eb-app.target
+2026/04/11 07:49:34.606487 [INFO] Running command: systemctl enable web.service
+2026/04/11 07:49:34.849460 [INFO] Created symlink /etc/systemd/system/multi-user.target.wants/web.service → /etc/systemd/system/web.service.
+
+2026/04/11 07:49:34.849493 [INFO] Running command: systemctl show -p PartOf web.service
+2026/04/11 07:49:34.860530 [INFO] Running command: systemctl is-active web.service
+2026/04/11 07:49:34.867841 [INFO] Running command: systemctl start web.service
+2026/04/11 07:49:36.914756 [INFO] Executing instruction: start X-Ray
+2026/04/11 07:49:36.914767 [INFO] X-Ray is not enabled.
+2026/04/11 07:49:36.914771 [INFO] Executing instruction: start proxy with new configuration
+2026/04/11 07:49:36.914794 [INFO] Running command: /usr/sbin/nginx -t -c /var/proxy/staging/nginx/nginx.conf
+2026/04/11 07:49:36.943138 [INFO] nginx: [warn] could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+nginx: the configuration file /var/proxy/staging/nginx/nginx.conf syntax is ok
+nginx: configuration file /var/proxy/staging/nginx/nginx.conf test is successful
+
+2026/04/11 07:49:36.943485 [INFO] Running command: cp -rp /var/proxy/staging/nginx/* /etc/nginx
+2026/04/11 07:49:36.947237 [INFO] Running command: systemctl show -p PartOf nginx.service
+2026/04/11 07:49:36.969786 [INFO] Running command: systemctl daemon-reload
+2026/04/11 07:49:37.263008 [INFO] Running command: systemctl reset-failed
+2026/04/11 07:49:37.332124 [INFO] Running command: systemctl show -p PartOf nginx.service
+2026/04/11 07:49:37.346068 [INFO] Running command: systemctl is-active nginx.service
+2026/04/11 07:49:37.355333 [INFO] Running command: systemctl start nginx.service
+2026/04/11 07:49:37.477102 [INFO] Executing instruction: configureSqsd
+2026/04/11 07:49:37.477122 [INFO] This is a web server environment instance, skip configure sqsd daemon ...
+2026/04/11 07:49:37.477126 [INFO] Executing instruction: startSqsd
+2026/04/11 07:49:37.477129 [INFO] This is a web server environment instance, skip start sqsd daemon ...
+2026/04/11 07:49:37.477139 [INFO] Executing instruction: Track pids in healthd
+2026/04/11 07:49:37.477142 [INFO] This is an enhanced health env...
+2026/04/11 07:49:37.477155 [INFO] Running command: systemctl show -p ConsistsOf aws-eb.target | cut -d= -f2
+2026/04/11 07:49:37.493899 [INFO] cfn-hup.service healthd.service nginx.service
+
+2026/04/11 07:49:37.493936 [INFO] Running command: systemctl show -p ConsistsOf eb-app.target | cut -d= -f2
+2026/04/11 07:49:37.510499 [INFO] web.service
+
+2026/04/11 07:49:37.510839 [INFO] Executing instruction: RunAppDeployPostDeployHooks
+2026/04/11 07:49:37.510857 [INFO] No hooks found in .platform/hooks/postdeploy/, skipping
+2026/04/11 07:49:37.510861 [INFO] Executing cleanup logic
+2026/04/11 07:49:37.510965 [INFO] CommandService Response: {"status":"SUCCESS","api_version":"1.0","results":[{"status":"SUCCESS","msg":"Engine execution has succeeded.","returncode":0,"events":[{"msg":"Instance deployment used the commands in your 'Procfile' to initiate startup of your application.","timestamp":1775893768397,"severity":"INFO"},{"msg":"Instance deployment completed successfully.","timestamp":1775893777510,"severity":"INFO"}]}]}
+
+2026/04/11 07:49:37.536992 [INFO] Platform Engine finished execution on command: app-deploy
+
+2026/04/11 07:50:33.820304 [INFO] Starting...
+2026/04/11 07:50:33.820415 [INFO] Starting EBPlatform-PlatformEngine
+2026/04/11 07:50:33.820441 [INFO] reading event message file
+2026/04/11 07:50:33.820801 [INFO] Engine received EB command cfn-hup-exec
+
+2026/04/11 07:50:33.901428 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:432873360631:stack/awseb-e-mwkpxmifpp-stack/a54adbd0-356d-11f1-aff9-0affdc48f92f -r AWSEBAutoScalingGroup --region us-east-1
+2026/04/11 07:50:34.217358 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:432873360631:stack/awseb-e-mwkpxmifpp-stack/a54adbd0-356d-11f1-aff9-0affdc48f92f -r AWSEBBeanstalkMetadata --region us-east-1
+2026/04/11 07:50:34.520483 [INFO] checking whether command tail-log is applicable to this instance...
+2026/04/11 07:50:34.520496 [INFO] this command is applicable to the instance, thus instance should execute command
+2026/04/11 07:50:34.520499 [INFO] Engine command: (tail-log)
+
+2026/04/11 07:50:34.520549 [INFO] Executing instruction: GetTailLogs
+2026/04/11 07:50:34.520552 [INFO] Tail Logs...
+2026/04/11 07:50:34.521052 [INFO] Running command: tail -n 100 /var/log/web.stdout.log
+2026/04/11 07:50:34.523283 [INFO] Running command: tail -n 100 /var/log/eb-engine.log
+
+
+----------------------------------------
+/var/log/nginx/access.log
+----------------------------------------
+185.16.39.146 - - [11/Apr/2026:07:07:04 +0000] "GET / HTTP/1.1" 502 150 "-" "Wget" "-"
+109.76.205.166 - - [11/Apr/2026:07:14:18 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:14:19 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+185.16.39.146 - - [11/Apr/2026:07:16:38 +0000] "GET / HTTP/1.1" 502 150 "-" "Wget" "-"
+109.76.205.166 - - [11/Apr/2026:07:18:23 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:18:24 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:18:29 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:18:29 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:18:31 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:18:31 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:18:33 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:18:33 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:18:33 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:18:33 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:18:34 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:18:34 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:18:34 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:18:35 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:20:03 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:20:03 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:20:20 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:20:20 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:22:22 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:22:22 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+185.16.39.146 - - [11/Apr/2026:07:29:18 +0000] "GET / HTTP/1.1" 502 150 "-" "Wget" "-"
+204.76.203.206 - - [11/Apr/2026:07:34:04 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46" "-"
+185.16.39.146 - - [11/Apr/2026:07:42:19 +0000] "GET / HTTP/1.1" 502 150 "-" "Wget" "-"
+109.76.205.166 - - [11/Apr/2026:07:45:33 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:45:34 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:45:49 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:45:49 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:45:51 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:45:51 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:49:46 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:49:47 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:49:49 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:49:49 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:49:54 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:49:56 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:49:58 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+109.76.205.166 - - [11/Apr/2026:07:49:58 +0000] "GET /favicon.ico HTTP/1.1" 502 552 "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+
+
+----------------------------------------
+/var/log/nginx/error.log
+----------------------------------------
+2026/04/11 07:05:26 [warn] 2040#2040: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/04/11 07:05:26 [warn] 2078#2078: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/04/11 07:05:26 [warn] 2079#2079: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/04/11 07:07:04 [error] 2084#2084: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 185.16.39.146, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "34.226.174.33"
+2026/04/11 07:14:18 [error] 2083#2083: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:14:19 [error] 2083#2083: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:16:38 [error] 2084#2084: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 185.16.39.146, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "34.226.174.33"
+2026/04/11 07:18:22 [warn] 3013#3013: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/04/11 07:18:22 [warn] 3046#3046: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/04/11 07:18:22 [warn] 3047#3047: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/04/11 07:18:23 [error] 3049#3049: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:18:24 [error] 3049#3049: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:18:29 [error] 3049#3049: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:18:29 [error] 3049#3049: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:18:31 [error] 3049#3049: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:18:31 [error] 3049#3049: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:18:33 [error] 3049#3049: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:18:33 [error] 3049#3049: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:18:33 [error] 3049#3049: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:18:33 [error] 3049#3049: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:18:34 [error] 3049#3049: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:18:34 [error] 3049#3049: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:18:34 [error] 3049#3049: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:18:35 [error] 3049#3049: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:20:03 [error] 3049#3049: *18 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:20:03 [error] 3049#3049: *18 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:20:20 [error] 3049#3049: *18 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:20:20 [error] 3049#3049: *18 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:22:22 [error] 3049#3049: *24 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:22:22 [error] 3049#3049: *24 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:29:18 [error] 3049#3049: *28 connect() failed (111: Connection refused) while connecting to upstream, client: 185.16.39.146, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "34.226.174.33"
+2026/04/11 07:34:04 [error] 3049#3049: *30 connect() failed (111: Connection refused) while connecting to upstream, client: 204.76.203.206, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "34.226.174.33:80"
+2026/04/11 07:42:19 [error] 3049#3049: *32 connect() failed (111: Connection refused) while connecting to upstream, client: 185.16.39.146, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "34.226.174.33"
+2026/04/11 07:45:21 [warn] 4438#4438: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/04/11 07:45:21 [warn] 4471#4471: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/04/11 07:45:21 [warn] 4472#4472: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/04/11 07:45:33 [error] 4475#4475: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:45:34 [error] 4475#4475: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:45:49 [error] 4475#4475: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:45:49 [error] 4475#4475: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:45:51 [error] 4475#4475: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:45:51 [error] 4475#4475: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:49:36 [warn] 5110#5110: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/04/11 07:49:37 [warn] 5145#5145: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/04/11 07:49:37 [warn] 5146#5146: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/04/11 07:49:46 [error] 5148#5148: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:49:47 [error] 5148#5148: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:49:49 [error] 5148#5148: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:49:49 [error] 5148#5148: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:49:54 [error] 5148#5148: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:49:56 [error] 5148#5148: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+2026/04/11 07:49:58 [error] 5148#5148: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com"
+2026/04/11 07:49:58 [error] 5148#5148: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 109.76.205.166, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com", referrer: "http://smartparkg1-env.eba-umctsra2.us-east-1.elasticbeanstalk.com/"
+
+

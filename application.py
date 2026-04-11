@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-SmartPark Dashboard - Simplified for AWS Cloud9
+SmartPark Dashboard - Elastic Beanstalk Version
+NCI Fog & Edge Computing Project
 """
 
 from flask import Flask, render_template, jsonify, send_from_directory
@@ -9,13 +10,10 @@ from decimal import Decimal
 from datetime import datetime
 import os
 
-# Get current directory
-current_dir = os.path.dirname(os.path.abspath(__file__))
-
-# Initialize Flask with explicit template folder
-app = Flask(__name__, 
-    template_folder=current_dir,  # Look for templates in current directory
-    static_folder=current_dir
+# Initialize Flask
+application = Flask(__name__, 
+    template_folder='.',
+    static_folder='.'
 )
 
 # AWS Configuration
@@ -32,7 +30,7 @@ except Exception as e:
     table = None
 
 def convert_decimals(obj):
-    """Convert Decimal to float for JSON serialization"""
+    """Convert Decimal to float for JSON"""
     if isinstance(obj, Decimal):
         return float(obj)
     elif isinstance(obj, dict):
@@ -41,20 +39,19 @@ def convert_decimals(obj):
         return [convert_decimals(i) for i in obj]
     return obj
 
-@app.route('/')
+@application.route('/')
 def index():
     """Serve dashboard HTML"""
     try:
-        # Try to serve dashboard.html from current directory
-        return send_from_directory(current_dir, 'dashboard.html')
+        return send_from_directory('.', 'index.html')
     except:
         return """
         <h1>SmartPark Dashboard</h1>
-        <p>Error: dashboard.html not found in: {}</p>
+        <p>Error: index.html not found</p>
         <p>Files in directory: {}</p>
-        """.format(current_dir, os.listdir(current_dir))
+        """.format(os.listdir('.'))
 
-@app.route('/api/current')
+@application.route('/api/current')
 def get_current():
     """Get latest reading"""
     if not table:
@@ -69,14 +66,13 @@ def get_current():
         )
 
         if response['Items']:
-            # Convert Decimals to floats
             data = convert_decimals(response['Items'][0])
             return jsonify({'status': 'success', 'data': data})
         return jsonify({'status': 'error', 'message': 'No data. Run fog_node.py first'}), 404
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
-@app.route('/api/history')
+@application.route('/api/history')
 def get_history():
     """Get last 50 readings"""
     if not table:
@@ -94,7 +90,6 @@ def get_history():
         if not items:
             return jsonify({'status': 'error', 'message': 'No data found'}), 404
 
-        # Convert all Decimals to floats
         items = [convert_decimals(item) for item in items]
 
         chart_data = {
@@ -111,7 +106,7 @@ def get_history():
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
-@app.route('/api/alerts')
+@application.route('/api/alerts')
 def get_alerts():
     """Get recent alerts"""
     if not table:
@@ -134,16 +129,6 @@ def get_alerts():
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
+# For local testing
 if __name__ == '__main__':
-    print("="*70)
-    print("🚀 SmartPark Dashboard")
-    print("="*70)
-    print(f"📁 Running from: {current_dir}")
-    print(f"📄 Files found: {os.listdir(current_dir)}")
-    print("="*70)
-    print("Access: Click 'Preview' → 'Preview Running Application'")
-    print("🛑 Press Ctrl+C to stop")
-
-    app.run(host='0.0.0.0', port=8080, debug=True, use_reloader=False)
-    app.run(host='0.0.0.0', port=8080)
-    app = Flask(__name__)
+    application.run(host='0.0.0.0', port=8080, debug=True)
