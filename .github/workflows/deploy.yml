@@ -33,7 +33,7 @@ jobs:
     - name: Generate Deployment Package
       run: |
         # Create deploy.zip with all needed files
-        zip -r deploy.zip app.py fog_node.py dashboard.html requirements.txt certs/
+        zip -r deploy.zip application.py fog_node.py dashboard.html requirements.txt certs/
     
     - name: Deploy to Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v20
