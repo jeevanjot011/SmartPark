@@ -1,0 +1,65 @@
+name: Deploy SmartPark to AWS Elastic Beanstalk
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install awsebcli
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: 'ASIAWJSKDJT34PB4VS3I'
+          aws-secret-access-key: 'irl1K13y7xHRq0ZNteoJVtif9X9TwK33lTzmo3nt'
+          aws-session-token: 'IQoJb3JpZ2luX2VjEKT//////////wEaCXVzLXdlc3QtMiJHMEUCIQCNGjW11KuIzdVYfmJlh+Ln7IXZUdHt56ss5zvklYKneQIgJo/BGOd5G0RvSwlwsoTclEyNy+/h+cbn8v3xEYXkE4wqtAIIbRABGgw0MzI4NzMzNjA2MzEiDIkTNpgO2+VOZgKUrCqRAi6yi7keYQqCjCQTQgIeeVnlDK7/OqKt+qAjFv31OcX+QVsPihsDbBWh2IWzowQ703G/fOpmuZIe3RI0r9fsjzYJ6wK2JnFyMt3C2hefZBVilGthzp97B3MQgXYw+IEAGtY0u71TSdIONtNK7tYl3xhfUYXDa5Ux+lacbv3G9Zwbsy87Q1NtwgoWBAhKdZjntPMnMDuqhjMLSKO/zdyIhVKQLR/U6ou/dVW5fe2DzVnu7kicAA0wygAwqsmzFpNodoFKvmBSGGkY/O1Rg4m6GKohOVBa4jmsDYNE6gZU7vT0oX4BM96MH3+z/UyXFLQnErICgrW0BbJSzn9quhYSaVrJNs3p1NOrcKPtt5+AdJaAXTC8yfHOBjqdAbvnHgbQs2inbGJEZgINxzpjDILL1WATcxM9QNqGtLEwvj4eLlstguDr7dr5L3pm020cMlti4yx//5nOZusuctaqzPN6iRVzGXtWNX5b5F+0hZ29ZYap4HVkc3geFPmeOrNTJHv1Ga/Yz5JoBQFpAyM7v5v+zDHowbnkk6cutraowmgNznxwBZD110mSebtdoXDHi5Q5zh3ytn58OEo='
+          aws-region: us-east-1
+
+      - name: Generate EB config
+        run: |
+          mkdir -p .elasticbeanstalk
+          cat > .elasticbeanstalk/config.yml << 'EOF'
+          branch-defaults:
+            main:
+              environment: smartpark-env
+              group_suffix: null
+          global:
+            application_name: smartpark
+            branch: null
+            default_ec2_keyname: null
+            default_platform: Python 3.9
+            default_region: us-east-1
+            include_git_submodules: true
+            instance_profile: null
+            platform_name: null
+            platform_version: null
+            profile: null
+            repository: null
+            sc: git
+            workspace_type: Application
+          EOF
+
+      - name: Deploy to Elastic Beanstalk
+        run: |
+          eb use smartpark-env || eb create smartpark-env --single
+          eb deploy --staged
+
+      - name: Deployment status
+        run: |
+          echo "✅ Deployed to: http://smartpark-env.elasticbeanstalk.com"

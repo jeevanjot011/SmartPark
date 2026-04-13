@@ -24,8 +24,8 @@ CA_PATH = "certs/AmazonRootCA1.pem"
 
 # OpenWeatherMap
 OWM_API_KEY = "459aa1892fe226433d938ebeae1d2b2e"
-LOCATION = "New York,US"
-LAT, LON = 40.7128, -74.0060
+LOCATION = "Dublin,IE"
+LAT, LON = 53.3498, -6.2603
 
 RAW_INTERVAL = 10
 FOG_INTERVAL = 30
@@ -305,12 +305,30 @@ def main():
                     )
                     proc_future.result()
 
-                    # Write directly to DynamoDB (now with proper Decimals)
+                    
                     try:
                         table.put_item(Item=processed)
                         print(f"   💾 DynamoDB saved: Score {score}/100")
                     except Exception as e:
                         print(f"   ⚠️  DynamoDB error: {e}")
+                    if alerts:
+                        try:
+                            sns = boto3.client('sns', region_name='us-east-1')
+                            topic_arn = "arn:aws:sns:us-east-1:YOUR_ACCOUNT_ID:SmartParkAlerts"
+                            
+                            message = f"🚨 SmartPark Alert!\n\n"
+                            for alert in alerts:
+                                message += f"• {alert['type']}: {alert['message']}\n"
+                            message += f"\nPark Score: {score}/100\nTime: {datetime.now(timezone.utc).isoformat()}"
+                            
+                            sns.publish(
+                                TopicArn=topic_arn,
+                                Subject=f"SmartPark Alert: {alerts[0]['type']}",
+                                Message=message
+                            )
+                            print(f"   📧 SNS Alert sent to email")
+                        except Exception as e:
+                            print(f"   ⚠️ SNS error: {e}")
 
                     alert_icon = "🔴" if alerts else "🟢"
                     print(f"   🧠 Fog→AWS: {recommendation[:50]}... {alert_icon}")
