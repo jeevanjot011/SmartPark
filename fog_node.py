@@ -349,7 +349,7 @@ def main():
         print("Disconnecting from AWS IoT Core...")
         disconnect_future = connection.disconnect()
         disconnect_future.result()
-        print("✅ Disconnected successfully.")
+        print("✅ Disconnectesuccessfully.")
 
 if __name__ == "__main__":
     main()
