@@ -33,7 +33,7 @@ jobs:
 
       - name: Deploy to Elastic Beanstalk
         run: |
-          eb use smartpark-env || eb create smartpark-env --single
+          eb use Smartparkg1-env
           eb deploy --staged
 
       - name: Deployment status
