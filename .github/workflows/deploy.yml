@@ -1,41 +1,48 @@
-name: Deploy SmartPark to AWS Elastic Beanstalk
+name: Deploy to AWS
 
 on:
   push:
-    branches: [main, master]
-  workflow_dispatch:
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.9'
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          pip install awsebcli
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: 'ASIAWJSKDJT34PB4VS3I'
-          aws-secret-access-key: 'irl1K13y7xHRq0ZNteoJVtif9X9TwK33lTzmo3nt'
-          aws-session-token: 'IQoJb3JpZ2luX2VjEKT//////////wEaCXVzLXdlc3QtMiJHMEUCIQCNGjW11KuIzdVYfmJlh+Ln7IXZUdHt56ss5zvklYKneQIgJo/BGOd5G0RvSwlwsoTclEyNy+/h+cbn8v3xEYXkE4wqtAIIbRABGgw0MzI4NzMzNjA2MzEiDIkTNpgO2+VOZgKUrCqRAi6yi7keYQqCjCQTQgIeeVnlDK7/OqKt+qAjFv31OcX+QVsPihsDbBWh2IWzowQ703G/fOpmuZIe3RI0r9fsjzYJ6wK2JnFyMt3C2hefZBVilGthzp97B3MQgXYw+IEAGtY0u71TSdIONtNK7tYl3xhfUYXDa5Ux+lacbv3G9Zwbsy87Q1NtwgoWBAhKdZjntPMnMDuqhjMLSKO/zdyIhVKQLR/U6ou/dVW5fe2DzVnu7kicAA0wygAwqsmzFpNodoFKvmBSGGkY/O1Rg4m6GKohOVBa4jmsDYNE6gZU7vT0oX4BM96MH3+z/UyXFLQnErICgrW0BbJSzn9quhYSaVrJNs3p1NOrcKPtt5+AdJaAXTC8yfHOBjqdAbvnHgbQs2inbGJEZgINxzpjDILL1WATcxM9QNqGtLEwvj4eLlstguDr7dr5L3pm020cMlti4yx//5nOZusuctaqzPN6iRVzGXtWNX5b5F+0hZ29ZYap4HVkc3geFPmeOrNTJHv1Ga/Yz5JoBQFpAyM7v5v+zDHowbnkk6cutraowmgNznxwBZD110mSebtdoXDHi5Q5zh3ytn58OEo='
-          aws-region: us-east-1
-
-      - name: Deploy to Elastic Beanstalk
-        run: |
-          eb use Smartparkg1-env
-          eb deploy --staged
-
-      - name: Deployment status
-        run: |
-          echo "✅ Deployed to: http://smartpark-env.elasticbeanstalk.com"
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install awsiotsdk requests
+    
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+        aws-region: us-east-1
+    
+    - name: Generate Deployment Package
+      run: |
+        # Create deploy.zip with all needed files
+        zip -r deploy.zip app.py fog_node.py dashboard.html requirements.txt certs/
+    
+    - name: Deploy to Elastic Beanstalk
+      uses: einaregilsson/beanstalk-deploy@v20
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
+        application_name: smartpark
+        environment_name: Smartparkg1-env
+        version_label: ${{ github.sha }}
+        region: us-east-1
+        deployment_package: deploy.zip
